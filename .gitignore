@@ -1,5 +1,14 @@
-# Compiled class file
+bin/
 *.class
+.settings/
+.project
+.classpath
+target/
+classes/
+/build/
+doc/
+config-local.properties
+generatorConfig.xml
 
 # Log file
 *.log
