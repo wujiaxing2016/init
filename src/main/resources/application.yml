@@ -1,0 +1,40 @@
+# server
+server:
+  servlet:
+    context-path: /init
+  port: 8880
+  tomcat:
+    uri-encoding: UTF-8
+
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/init?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+# Mybatis-Plus元配置
+mybatis-plus:
+  # mapper存在resources下
+  # mapper-locations=classpath:/mapper/*Mapper.xml
+  # mapper存在java下
+  mapper-locations: classpath*:/com/init/*/mapper/xml/*Mapper.xml
+  typeAliasesPackage: com.init.*.entity
+  global-config:
+    #数据库类型
+    db-config.db-type: mysql 
+    #生成的SQL语句中，字段是否自动加入下划线
+    db-column-underline: true
+    cache-enabled: false
+    sql-parser-cache: false
+
+# Logger Config
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+  level:
+    springfox: debug
+  file: logs/init.log

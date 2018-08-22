@@ -38,7 +38,7 @@ public class Generate {
 		dsc.setDriverName("com.mysql.jdbc.Driver");
 		dsc.setUsername("root");
 		dsc.setPassword("root");
-		dsc.setUrl("jdbc:mysql://127.0.0.1:3306/pethome?characterEncoding=utf8");
+		dsc.setUrl("jdbc:mysql://127.0.0.1:3306/init?characterEncoding=utf8");
 		mpg.setDataSource(dsc);
 
 		// 策略配置
@@ -49,7 +49,7 @@ public class Generate {
 
 		// 包配置
 		PackageConfig pc = new PackageConfig();
-		pc.setParent("com.pethome");
+		pc.setParent("com.init");
 		pc.setModuleName("sys");
 		mpg.setPackageInfo(pc);
 

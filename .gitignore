@@ -3,6 +3,7 @@ bin/
 .settings/
 .project
 .classpath
+.factorypath
 target/
 classes/
 /build/

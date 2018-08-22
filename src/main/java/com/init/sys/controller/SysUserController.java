@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.init.base.utils.ApiResult;
 import com.init.sys.entity.SysUser;
 import com.init.sys.service.ISysUserService;
@@ -53,6 +54,14 @@ public class SysUserController {
 	public ApiResult get(@PathVariable String id) {
 		SysUser user = sysUserService.getById(id);
 		return ApiResult.success(null, user);
+	}
+
+	@GetMapping("list")
+	public ApiResult list() {
+		QueryWrapper<SysUser> wrapper = new QueryWrapper<SysUser>();
+
+		sysUserService.list(wrapper);
+		return null;
 	}
 
 }
