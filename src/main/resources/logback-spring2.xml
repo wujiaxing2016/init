@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	<contextName>logback</contextName>
+
+	<!-- 文件输出日志，设置文件，可以是绝对路径，也可以是相对路径；设置目录，会在该目录下创建spring.log文件，并写入日志内容 -->
+	<property name="log.path" value="/Users/wujiaxing/Desktop/log" />
+	<!-- <property name="log.file" value="log" /> -->
+
+	<!-- ${log.moduleName}模块名称， 影响日志配置名，日志文件名 -->
+	<property name="log.moduleName" value="init" />
+
+	<!-- 日志文件大小 -->
+	<property name="log.max.size" value="100MB" />
+
+	<!--输出到控制台 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!--输出到文件 -->
+	<appender name="info_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 定义了日志的切分方式——把每一天的日志归档到一个文件中 -->
+			<FileNamePattern>
+				${log.path}/${log.moduleName}_info_%d{yyyy-MM-dd}.%i.log
+				<!--日志文件保留天数 -->
+				<MaxHistory>90</MaxHistory>
+				<!-- 用来指定日志文件的上限大小，例如设置为1GB的话，那么到了这个值，就会删除旧的日志。 -->
+				<totalSizeCap>1GB</totalSizeCap>
+				<!-- 当天的日志大小 超过${log.max.size}时,压缩日志并保存 -->
+				<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+					<maxFileSize>${log.max.size}</maxFileSize>
+				</timeBasedFileNamingAndTriggeringPolicy>
+			</FileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<!--输出到文件 -->
+	<appender name="debug_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 定义了日志的切分方式——把每一天的日志归档到一个文件中 -->
+			<FileNamePattern>
+				${log.path}/${log.moduleName}_debug_%d{yyyy-MM-dd}.%i.log
+				<!--日志文件保留天数 -->
+				<MaxHistory>90</MaxHistory>
+				<!-- 用来指定日志文件的上限大小，例如设置为1GB的话，那么到了这个值，就会删除旧的日志。 -->
+				<totalSizeCap>1GB</totalSizeCap>
+				<!-- 当天的日志大小 超过${log.max.size}时,压缩日志并保存 -->
+				<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+					<maxFileSize>${log.max.size}</maxFileSize>
+				</timeBasedFileNamingAndTriggeringPolicy>
+			</FileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<!--输出到文件 -->
+	<appender name="error_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 定义了日志的切分方式——把每一天的日志归档到一个文件中 -->
+			<FileNamePattern>
+				${log.path}/${log.moduleName}_error_%d{yyyy-MM-dd}.%i.log
+				<!--日志文件保留天数 -->
+				<MaxHistory>90</MaxHistory>
+				<!-- 用来指定日志文件的上限大小，例如设置为1GB的话，那么到了这个值，就会删除旧的日志。 -->
+				<totalSizeCap>1GB</totalSizeCap>
+				<!-- 当天的日志大小 超过${log.max.size}时,压缩日志并保存 -->
+				<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+					<maxFileSize>${log.max.size}</maxFileSize>
+				</timeBasedFileNamingAndTriggeringPolicy>
+			</FileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- root将级别为“DEBUG”及大于“DEBUG”的日志信息交给已经配置好的名为“Console”的appender处理，“Console”appender将信息打印到Console -->
+	<root level="debug">
+		
+		<appender-ref ref="console" /><!-- 标识这个appender将会添加到这个logger -->
+		<appender-ref ref="debug_file" />
+		<appender-ref ref="error_file" />
+		<appender-ref ref="info_file" />
+	</root>
+
+	<!-- logback为java中的包 -->
+	<logger name="org.springframework" level="WARN" />
+	<logger name="springfox.documentation" level="WARN" />
+	<logger name="com.baomidou.mybatisplus" level="WARN" />
+	<logger name="org.mybatis.spring" level="WARN" />
+	<logger name="org.apache.ibatis" level="WARN" />
+	<logger name="com.init" level="WARN" />
+</configuration>

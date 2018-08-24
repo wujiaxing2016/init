@@ -27,14 +27,9 @@ public class SysUserController {
 	@Autowired
 	private ISysUserService sysUserService;
 
-	/**
-	 * 新增方法
-	 * @param user
-	 * @return
-	 */
-	@PostMapping("save")
+	@PostMapping("insert")
 	public ApiResult save(SysUser user) {
-		boolean result = sysUserService.save(user);
+		boolean result = sysUserService.insert(user);
 		if (result) {
 			return ApiResult.success();
 		}
@@ -52,7 +47,7 @@ public class SysUserController {
 
 	@GetMapping("get/{id}")
 	public ApiResult get(@PathVariable String id) {
-		SysUser user = sysUserService.getById(id);
+		SysUser user = sysUserService.selectById(id);
 		return ApiResult.success(null, user);
 	}
 
@@ -60,7 +55,7 @@ public class SysUserController {
 	public ApiResult list() {
 		QueryWrapper<SysUser> wrapper = new QueryWrapper<SysUser>();
 
-		sysUserService.list(wrapper);
+		sysUserService.selectList(wrapper);
 		return null;
 	}
 

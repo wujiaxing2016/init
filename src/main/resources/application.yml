@@ -16,25 +16,45 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 
 
-# Mybatis-Plus元配置
+#mp配置
 mybatis-plus:
-  # mapper存在resources下
+  #mapper存在resources下
   # mapper-locations=classpath:/mapper/*Mapper.xml
-  # mapper存在java下
+  #mapper存在java下
   mapper-locations: classpath*:/com/init/*/mapper/xml/*Mapper.xml
+
+  #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.init.*.entity
+
   global-config:
-    #数据库类型
-    db-config.db-type: mysql 
-    #生成的SQL语句中，字段是否自动加入下划线
-    db-column-underline: true
+    #数据库相关配置
+    db-config:
+      #数据库类型
+      db-type: mysql
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: id_worker 
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: not_empty
+      #驼峰下划线转换
+      column-underline: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+    #刷新mapper 调试神器
+    refresh: true
+    #是否允许缓存
     cache-enabled: false
     sql-parser-cache: false
 
-# Logger Config
+  #原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+#Logger Config
 logging:
-  pattern:
-    console: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
-  level:
-    springfox: debug
-  file: logs/init.log
+  #可自定义日志名
+  config: classpath:logback-spring.xml
+
+# 是否启用“调试”模式，开启后会打印很多日志
+debug: false

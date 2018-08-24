@@ -1,7 +1,7 @@
 package com.init.sys.service;
 
+import com.init.base.mp.extension.IServiceCustom;
 import com.init.sys.entity.SysUser;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author JayWu
  * @since 2018-08-03
  */
-public interface ISysUserService extends IService<SysUser> {
+public interface ISysUserService extends IServiceCustom<SysUser> {
 
 }

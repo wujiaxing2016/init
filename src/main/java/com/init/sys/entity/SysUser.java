@@ -1,13 +1,10 @@
 package com.init.sys.entity;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import com.baomidou.mybatisplus.annotation.SqlCondition;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.init.base.mp.extension.DataEntity;
 
 /**
  * <p>
@@ -15,17 +12,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * </p>
  *
  * @author JayWu
- * @since 2018-08-04
+ * @since 2018-08-24
  */
 @TableName("sys_user")
-public class SysUser extends Model<SysUser> {
+public class SysUser extends DataEntity<SysUser> {
 
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 编号
-	 */
-	private Long id;
 
 	/**
 	 * 登录名
@@ -40,7 +32,6 @@ public class SysUser extends Model<SysUser> {
 	/**
 	 * 姓名
 	 */
-	@TableField(condition = SqlCondition.LIKE)
 	private String name;
 
 	/**
@@ -82,19 +73,6 @@ public class SysUser extends Model<SysUser> {
 	private LocalDateTime loginAt;
 
 	/**
-	 * 创建时间
-	 */
-	@TableField("create_at")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime createAt;
-
-	/**
-	 * 更新时间
-	 */
-	@TableField("update_at")
-	private LocalDateTime updateAt;
-
-	/**
 	 * 备注信息
 	 */
 	private String remark;
@@ -104,14 +82,6 @@ public class SysUser extends Model<SysUser> {
 	 */
 	@TableField("is_delete")
 	private Integer isDelete;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getUsername() {
 		return username;
@@ -193,22 +163,6 @@ public class SysUser extends Model<SysUser> {
 		this.loginAt = loginAt;
 	}
 
-	public LocalDateTime getCreateAt() {
-		return createAt;
-	}
-
-	public void setCreateAt(LocalDateTime createAt) {
-		this.createAt = createAt;
-	}
-
-	public LocalDateTime getUpdateAt() {
-		return updateAt;
-	}
-
-	public void setUpdateAt(LocalDateTime updateAt) {
-		this.updateAt = updateAt;
-	}
-
 	public String getRemark() {
 		return remark;
 	}
@@ -223,11 +177,6 @@ public class SysUser extends Model<SysUser> {
 
 	public void setIsDelete(Integer isDelete) {
 		this.isDelete = isDelete;
-	}
-
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
 	}
 
 	@Override

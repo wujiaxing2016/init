@@ -15,11 +15,10 @@
         <result column="avatar" property="avatar" />
         <result column="login_ip" property="loginIp" />
         <result column="login_at" property="loginAt" />
-        <result column="login_flag" property="loginFlag" />
         <result column="create_at" property="createAt" />
         <result column="update_at" property="updateAt" />
         <result column="remark" property="remark" />
-        <result column="del_flag" property="delFlag" />
+        <result column="is_delete" property="isDelete" />
     </resultMap>
 
 </mapper>
