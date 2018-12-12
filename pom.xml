@@ -18,12 +18,12 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<fastjson.version>1.2.47</fastjson.version>
-		<hutool.version>4.1.4</hutool.version>
+		<hutool.version>4.1.9</hutool.version>
 		<asm.version>3.3.1</asm.version>
 		<cglib.version>3.2.6</cglib.version>
-		<mybatis-plus.version>3.0-RC3</mybatis-plus.version>
+		<mybatis-plus.version>3.0.6</mybatis-plus.version>
 		<druid.version>1.1.6</druid.version>
-		<swagger.version>2.6.1</swagger.version>
+		<swagger.version>2.8.0</swagger.version>
 	</properties>
 
 	<dependencies>
@@ -32,13 +32,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		 -->
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -73,17 +71,40 @@
 			<artifactId>hutool-all</artifactId>
 			<version>${hutool.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-mp</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>javax.xml.bind</groupId> <artifactId>jaxb-api</artifactId> </dependency> -->
 	</dependencies>
 
 	<build>

@@ -24,14 +24,15 @@ import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.TableInfoHelper;
-import com.baomidou.mybatisplus.core.toolkit.sql.SqlHelper;
+import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 
 /**
  * @author wujiaxing
- * @date 2018年8月24日
+ * @email jiaxing.wu@qq.com
+ * @since 2018-12-12
  */
 @SuppressWarnings("unchecked")
-public class ServiceCustomImpl<M extends BaseMapper<T>, T extends DataEntity<T>> implements IServiceCustom<T> {
+public class BaseServiceImpl<M extends BaseMapper<T>, T> implements IBaseService<T> {
 
 	@Autowired
 	protected M baseMapper;
@@ -76,8 +77,7 @@ public class ServiceCustomImpl<M extends BaseMapper<T>, T extends DataEntity<T>>
 
 	@Override
 	public boolean insert(T entity) {
-		entity.preInsert();
-		return ServiceCustomImpl.retBool(baseMapper.insert(entity));
+		return BaseServiceImpl.retBool(baseMapper.insert(entity));
 	}
 
 	@Transactional(rollbackFor = Exception.class)
@@ -103,7 +103,6 @@ public class ServiceCustomImpl<M extends BaseMapper<T>, T extends DataEntity<T>>
 			int i = 0;
 			String sqlStatement = sqlStatement(SqlMethod.INSERT_ONE);
 			for (T anEntityList : entityList) {
-				anEntityList.preInsert();
 				batchSqlSession.insert(sqlStatement, anEntityList);
 				if (i >= 1 && i % batchSize == 0) {
 					batchSqlSession.flushStatements();
@@ -133,13 +132,11 @@ public class ServiceCustomImpl<M extends BaseMapper<T>, T extends DataEntity<T>>
 			if (null != tableInfo && StringUtils.isNotEmpty(tableInfo.getKeyProperty())) {
 				Object idVal = ReflectionKit.getMethodValue(cls, entity, tableInfo.getKeyProperty());
 				if (StringUtils.checkValNull(idVal)) {
-					entity.preInsert();
 					return insert(entity);
 				} else {
 					/*
 					 * 更新成功直接返回，失败执行插入逻辑
 					 */
-					entity.preUpdate();
 					return updateById(entity) || insert(entity);
 				}
 			} else {
@@ -197,14 +194,12 @@ public class ServiceCustomImpl<M extends BaseMapper<T>, T extends DataEntity<T>>
 
 	@Override
 	public boolean updateById(T entity) {
-		entity.preUpdate();
-		return ServiceCustomImpl.retBool(baseMapper.updateById(entity));
+		return BaseServiceImpl.retBool(baseMapper.updateById(entity));
 	}
 
 	@Override
 	public boolean update(T entity, Wrapper<T> updateWrapper) {
-		entity.preUpdate();
-		return ServiceCustomImpl.retBool(baseMapper.update(entity, updateWrapper));
+		return BaseServiceImpl.retBool(baseMapper.update(entity, updateWrapper));
 	}
 
 	@Transactional(rollbackFor = Exception.class)
@@ -224,7 +219,6 @@ public class ServiceCustomImpl<M extends BaseMapper<T>, T extends DataEntity<T>>
 			String sqlStatement = sqlStatement(SqlMethod.UPDATE_BY_ID);
 			for (T anEntityList : entityList) {
 				MapperMethod.ParamMap<T> param = new MapperMethod.ParamMap<>();
-				anEntityList.preUpdate();
 				param.put(Constants.ENTITY, anEntityList);
 				batchSqlSession.update(sqlStatement, param);
 				if (i >= 1 && i % batchSize == 0) {
@@ -281,7 +275,6 @@ public class ServiceCustomImpl<M extends BaseMapper<T>, T extends DataEntity<T>>
 
 	@Override
 	public IPage<T> selectPage(IPage<T> page, Wrapper<T> queryWrapper) {
-		queryWrapper = (Wrapper<T>) SqlHelper.fillWrapper(page, queryWrapper);
 		return baseMapper.selectPage(page, queryWrapper);
 	}
 
@@ -297,7 +290,6 @@ public class ServiceCustomImpl<M extends BaseMapper<T>, T extends DataEntity<T>>
 
 	@Override
 	public IPage<Map<String, Object>> selectPageMaps(IPage<T> page, Wrapper<T> queryWrapper) {
-		queryWrapper = (Wrapper<T>) SqlHelper.fillWrapper(page, queryWrapper);
 		return baseMapper.selectMapsPage(page, queryWrapper);
 	}
 

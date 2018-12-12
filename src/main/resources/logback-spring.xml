@@ -9,7 +9,7 @@
 	<logger name="org.mybatis.spring" level="WARN" />
 	<logger name="org.apache.ibatis" level="WARN" />
 	<!-- additivity="false" -->
-	<logger name="com.init" level="WARN" />
+	<logger name="com.init" level="DEBUG" />
 
 	<!-- ${log.base}日志路径，这里是相对路径， -->
 	<!--<property name="log.base" value="/Users/liningning/Documents/code/java/logs" /> -->
@@ -54,7 +54,6 @@
 	</appender>
 	<!-- 日志文件输出 -->
 	<appender name="error_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-
 		<File>${log.base}/${log.moduleName}_error.log</File><!-- 设置日志不超过${log.max.size}时的保存路径，注意如果 是web项目会保存到Tomcat的bin目录 下 -->
 		<!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -80,7 +79,6 @@
 	</appender>
 	<!-- 日志文件输出 -->
 	<appender name="info_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-
 		<File>${log.base}/${log.moduleName}_info.log</File><!-- 设置日志不超过${log.max.size}时的保存路径，注意如果 是web项目会保存到Tomcat的bin目录 下 -->
 		<!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">

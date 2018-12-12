@@ -12,8 +12,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
  * @author wujiaxing
  * @date 2018年8月24日
  */
-// public interface IServiceCustom<T extends DataEntity<T>> {
-public interface IServiceCustom<T> {
+public interface IBaseService<T> {
 
 	/**
 	 * <p>

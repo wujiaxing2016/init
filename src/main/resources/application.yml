@@ -1,8 +1,8 @@
 # server
 server:
+  port: 8880
   servlet:
     context-path: /init
-  port: 8880
   tomcat:
     uri-encoding: UTF-8
 
@@ -12,27 +12,25 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/init?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
-    password: root
+    password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
-
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 #mp配置
 mybatis-plus:
   #mapper存在resources下
-  # mapper-locations=classpath:/mapper/*Mapper.xml
-  #mapper存在java下
-  mapper-locations: classpath*:/com/init/*/mapper/xml/*Mapper.xml
-
+  mapper-locations: classpath:/mapper/*/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.init.*.entity
-
+  #typeAliasesPackage: com.init.*.entity
+  #typeEnumsPackage: com.init.*.entity.enums
   global-config:
     #数据库相关配置
     db-config:
       #数据库类型
       db-type: mysql
       #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
-      id-type: id_worker 
+      id-type: id_worker
       #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
       field-strategy: not_empty
       #驼峰下划线转换
@@ -45,7 +43,6 @@ mybatis-plus:
     #是否允许缓存
     cache-enabled: false
     sql-parser-cache: false
-
   #原生配置
   configuration:
     map-underscore-to-camel-case: true
