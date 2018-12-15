@@ -2,7 +2,7 @@
 server:
   port: 8880
   servlet:
-    context-path: /init
+    context-path: /jaywu
   tomcat:
     uri-encoding: UTF-8
 
@@ -10,7 +10,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/init?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/jaywu?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
@@ -22,8 +22,8 @@ mybatis-plus:
   #mapper存在resources下
   mapper-locations: classpath:/mapper/*/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
-  #typeAliasesPackage: com.init.*.entity
-  #typeEnumsPackage: com.init.*.entity.enums
+  #typeAliasesPackage: com.jaywu.modular.*.entity
+  #typeEnumsPackage: com.jaywu.modular.*.entity.enums
   global-config:
     #数据库相关配置
     db-config:
@@ -53,5 +53,17 @@ logging:
   #可自定义日志名
   config: classpath:logback-spring.xml
 
+wx:
+  mp:
+    configs:
+      - appId: wx12202ff07da277bb
+        secret: 30d1c7b04ea37ad6764faceb49b51108
+        token: ybltestmptoken
+        aesKey: Bjte9IvAxbLNse6DWQ0sdVx3zBWoLB4pQtJTKWnGKch
+      - appId: wx21c22acfb6b27142
+        secret: 662a21a2429be8b648af80152d998cd3
+        token: 111
+        aesKey: 222
+
 # 是否启用“调试”模式，开启后会打印很多日志
-debug: false
+#debug: false

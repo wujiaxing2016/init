@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.init.modular.sys.entity.SysUser;
-import com.init.modular.sys.service.ISysUserService;
+import com.jaywu.modular.sys.entity.SysUser;
+import com.jaywu.modular.sys.service.ISysUserService;
 
 import base.BaseJunit4Test;
 
