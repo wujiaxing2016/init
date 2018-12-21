@@ -36,7 +36,7 @@ public class SysUserController {
 
 	@PostMapping("insert")
 	public R<?> insert(@RequestBody(required = true) SysUser user) {
-		boolean insert = sysUserService.insert(user);
+		boolean insert = sysUserService.save(user);
 		if (insert) {
 			return R.success(user);
 		}
@@ -46,8 +46,8 @@ public class SysUserController {
 	@GetMapping("selectList")
 	public R<?> selectList() {
 		QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
-		queryWrapper.likeRight("name", "w");
-		List<SysUser> data = sysUserService.selectList(queryWrapper);
+		queryWrapper.eq("name","wjx");
+		List<SysUser> data = sysUserService.list(queryWrapper);
 		log.info("武佳兴:{}", data);
 		return R.success(data);
 	}
@@ -61,7 +61,7 @@ public class SysUserController {
 		page.setCurrent(current); // 当前页
 		page.setSize(size); // 每页几条
 		page.setDesc("create_date");
-		IPage<SysUser> selectPage = sysUserService.selectPage(page, queryWrapper);
+		IPage<SysUser> selectPage = sysUserService.page(page, queryWrapper);
 		return R.success(selectPage);
 	}
 

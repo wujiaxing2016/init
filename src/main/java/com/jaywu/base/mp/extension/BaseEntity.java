@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
@@ -30,21 +31,22 @@ public abstract class BaseEntity implements Serializable {
 	/**
 	 * 创建时间
 	 */
-    @TableField(fill = FieldFill.INSERT)
+	@TableField(fill = FieldFill.INSERT)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	protected LocalDateTime createDate;
+	protected LocalDateTime createTime;
 
 	/**
 	 * 更新时间
 	 */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+	@TableField(fill = FieldFill.INSERT_UPDATE)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	protected LocalDateTime updateDate;
+	protected LocalDateTime updateTime;
 
-    /**
-     * 删除标记
-     */
-    @TableField(fill = FieldFill.INSERT)
-    protected Integer isDelete;
+	/**
+	 * 删除标记
+	 */
+	//	@TableField(fill = FieldFill.INSERT)
+	@TableLogic(value = "0", delval = "1")
+	protected Integer deleteFlag;
 
 }

@@ -24,10 +24,14 @@ public class SysUserServiceTest extends BaseJunit4Test {
 	private ISysUserService sysUserService;
 
 	@Test
+	public void hello() {
+		System.out.println(111);
+	}
+	@Test
 	public void testInsert() {
 		SysUser entity = new SysUser();
 		entity.setName("wjx");
-		sysUserService.insert(entity );
+		sysUserService.save(entity );
 	}
 	@Test
 	public void testUpdate() {
@@ -37,6 +41,11 @@ public class SysUserServiceTest extends BaseJunit4Test {
 		boolean result = sysUserService.updateById(entity);
 		System.out.println(result);
 	}
+	@Test
+	public void testDelete() {
+		boolean result = sysUserService.removeById(1072748149062434818l);
+		System.out.println(result);
+	}
 	
 	@Test
 	public IPage<?> testPage() {
@@ -44,7 +53,7 @@ public class SysUserServiceTest extends BaseJunit4Test {
 		entity.setName("刘雪凤");
 		QueryWrapper<SysUser> queryWrapper = new QueryWrapper<SysUser>(entity );
 		Page<SysUser> page = new Page<>();
-		IPage<SysUser> selectPage = sysUserService.selectPage(page, queryWrapper);
+		IPage<SysUser> selectPage = sysUserService.page(page, queryWrapper);
 		System.out.println(selectPage);
 		return selectPage;
 	}

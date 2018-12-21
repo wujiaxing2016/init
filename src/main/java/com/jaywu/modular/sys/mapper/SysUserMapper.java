@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author Jay Wu
- * @since 2018-12-14
+ * @since 2018-12-21
  */
 public interface SysUserMapper extends BaseMapper<SysUser> {
 

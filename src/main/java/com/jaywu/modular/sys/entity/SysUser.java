@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Jay Wu
- * @since 2018-12-14
+ * @since 2018-12-21
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -69,7 +69,7 @@ public class SysUser extends BaseEntity {
     /**
      * 最后登陆时间
      */
-    private LocalDateTime loginDate;
+    private LocalDateTime loginTime;
 
     /**
      * 备注信息

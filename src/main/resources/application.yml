@@ -35,9 +35,6 @@ mybatis-plus:
       field-strategy: not_empty
       #驼峰下划线转换
       column-underline: true
-      #逻辑删除配置
-      logic-delete-value: 0
-      logic-not-delete-value: 1
     #刷新mapper 调试神器
     refresh: true
     #是否允许缓存
@@ -64,6 +61,14 @@ wx:
         secret: 662a21a2429be8b648af80152d998cd3
         token: 111
         aesKey: 222
+  pay:
+    appId: wx12202ff07da277bb
+    mchId: 1503340291
+    mchKey: youbeileguojijiaoyuzixun20181905
+    # subAppId: #服务商模式下的子商户公众账号ID
+    # subMchId: #服务商模式下的子商户号
+    # keyPath: p12证书的位置，可以指定绝对路径，也可以指定类路径（以classpath:开头）
+    keyPath: classpath:/p12/apiclient_cert.p12
 
 # 是否启用“调试”模式，开启后会打印很多日志
 #debug: false

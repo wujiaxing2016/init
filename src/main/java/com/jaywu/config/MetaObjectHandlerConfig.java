@@ -24,7 +24,7 @@ public class MetaObjectHandlerConfig implements MetaObjectHandler {
 		System.out.println("插入方法实体填充");
 		setFieldValByName("createDate", LocalDateTime.now(), metaObject);
 		setFieldValByName("updateDate", LocalDateTime.now(), metaObject);
-		setFieldValByName("isDelete", 0, metaObject);
+//		setFieldValByName("isDelete", 0, metaObject);
 	}
 
 	@Override

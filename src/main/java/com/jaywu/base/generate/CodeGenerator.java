@@ -115,15 +115,15 @@ public class CodeGenerator {
 		strategy.setColumnNaming(NamingStrategy.underline_to_camel);
 		strategy.setSuperEntityClass("com.jaywu.base.mp.extension.BaseEntity");
 		strategy.setEntityLombokModel(true);
-		strategy.setSuperEntityColumns("id", "create_date", "update_date", "is_delete");
+		strategy.setSuperEntityColumns("id", "create_time", "update_time", "delete_flag");
 
 		strategy.setRestControllerStyle(true);
 		strategy.setInclude(scanner("表名"));
 		strategy.setControllerMappingHyphenStyle(true);
 //		strategy.setTablePrefix(pc.getModuleName() + "_"); // 表前缀，生成时会被忽略
 
-		 strategy.setSuperServiceClass("com.jaywu.base.mp.extension.IBaseService");
-		 strategy.setSuperServiceImplClass("com.jaywu.base.mp.extension.BaseServiceImpl");
+//		 strategy.setSuperServiceClass("com.jaywu.base.mp.extension.IBaseService");
+//		 strategy.setSuperServiceImplClass("com.jaywu.base.mp.extension.BaseServiceImpl");
 		mpg.setStrategy(strategy);
 		mpg.setTemplateEngine(new FreemarkerTemplateEngine());
 		mpg.execute();
